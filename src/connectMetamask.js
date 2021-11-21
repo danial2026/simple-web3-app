@@ -43,7 +43,7 @@ export default class ConnectMetamask extends Component {
     return (
       <div className="connectMetamask">
         
-        <img class='metamaskIcon' src={metamaskIcon} onClick={this.connectBtnPressed} title="click to connect"/>
+        <img class='metamaskIcon shake-image' src={metamaskIcon} onClick={this.connectBtnPressed} title="click to connect"/>
         
         <dev class='metamaskText'>
           click to connect

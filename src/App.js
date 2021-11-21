@@ -1,8 +1,11 @@
 import ethereumIcon from './Ethereum-ETH-icon.png';
 import bitcoinIcon from './bitcoin-icon.png';
+import withdrawIcon from './withdraw-icon.png';
 import './App.css';
-import React, { Component } from 'react'
-import MetaMaskOnboarding from '@metamask/onboarding'
+import React, { Component , useEffect, useRef, useState} from 'react'
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 var contractAbi = require('./contractAbi.json');
 
 class App extends Component {
@@ -18,12 +21,30 @@ class App extends Component {
       price_change_pctBTC:"0.0%",
       price_change_pctETH:"0.0%",
       priceBTC:"0",
-      priceETH:"0"
+      priceETH:"0",
+      showMenu: false,
+      anchorEl: false,
     }
 
     this.connectMetamask()
 
     this.checkPriceChangePct()
+  }
+  handleClick = (event) => {
+    this.setState(
+      {
+        showMenu: true ,
+        anchorEl: event.currentTarget
+      }
+    );
+
+  };
+  handleClose = () => {
+    this.setState({ showMenu: false });
+  };
+  
+  logTest = () =>{
+    console.log('test')
   }
 
   updateInput = (event) =>{
@@ -106,6 +127,16 @@ class App extends Component {
     this.props.history.push(path);
   }
 
+  hideOnClickOutside(element) {
+    const outsideClickListener = event => {
+      if (!element.contains(event.target)) { // or use: event.target.closest(selector) === null
+        element.style.display = 'none'
+        // removeClickListener()
+        this.setState({ showMenu: false })
+      }
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -133,8 +164,7 @@ class App extends Component {
         <div id="wrapper">
           <ul>
           <li class="list-group-item">
-              <div class="todo-indicator bg-focus"></div>
-              <div class="widget-content p-0">
+              <div class="widget-content">
                   <div class="widget-content-wrapper">
 
                       <div class='curency-name widget-heading'>
@@ -151,7 +181,6 @@ class App extends Component {
           </li>
             
           <li class="list-group-item">
-              <div class="todo-indicator"></div>
               <div class="widget-content">
                   <div class="widget-content-wrapper">
 
@@ -167,10 +196,48 @@ class App extends Component {
                   </div>
               </div>
           </li>
+          <li class="list-group-item-simple">
+              <div class="widget-content">
+                  <div class="widget-content-wrapper">
+
+                    <button class="widget-content-center clean-button" onClick={this.logTest}> 
+                      <i class='bi bi-arrow-left-right'></i>                        
+                      <div class="small-icon-text">exchange</div>
+                    </button>
+                    <button class="widget-content-center clean-button" onClick={this.logTest}> 
+                      <img class='small-icon' src={withdrawIcon}/>                      
+                      <div class="small-icon-text">withdraw</div>
+                    </button>
+                    <button class="widget-content-center clean-button" onClick={this.logTest}> 
+                      <i class='bi bi-box-arrow-up'></i>                        
+                      <div class="small-icon-text">transfer</div>
+                    </button>
+                    <button class="widget-content-center clean-button" onClick={this.handleClick}> 
+                      <i class='bi bi-three-dots'></i>                        
+                      <div class="small-icon-text">more</div>
+                    </button>
+                    <div>
+                      <Menu
+                        id="menu-appbar"
+                        anchorEl={this.state.anchorEl}
+                        getContentAnchorEl={null}
+                        open={this.state.showMenu}
+                        onClose={this.handleClose}
+                        MenuListProps={{
+                          'aria-labelledby': 'basic-button',
+                        }}
+                      >
+                        <MenuItem onClick={this.logTest}>qr code</MenuItem>
+                        <MenuItem onClick={this.logTest}>test</MenuItem>
+                        <MenuItem onClick={this.logTest}>disconnect</MenuItem>
+                      </Menu>
+                    </div>
+                  </div>
+              </div>
+          </li>
           </ul>
         </div>
         </body>
-        {/* </div> */}
       </div>
     );
   }

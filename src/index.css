@@ -1,3 +1,5 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -73,6 +75,16 @@ i {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.list-group-item-simple {
+  position: relative;
+  width: 385px;  
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .list-group {
   display: flex;
   flex-direction: column;
@@ -101,6 +113,10 @@ i {
 
 .widget-content .widget-content-right {
   margin-left: auto
+}
+
+.widget-content .widget-content-center {
+  margin: auto
 }
 
 .curency-name {
@@ -145,4 +161,74 @@ i {
 
 .price_change_red {
   color: #be2d2d;
+}
+
+/* shake image*/
+.shake-image:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shake {
+  0% { 
+    width: 400px;
+    height: 400px; 
+  }
+  10% { 
+    width: 405px;
+    height: 405px;
+  }
+  20% { 
+    width: 410px;
+    height: 410px; 
+  }
+  30% { 
+    width: 415px;
+    height: 415px; 
+  }
+  40% { 
+    width: 420px;
+    height: 420px; 
+  }
+  50% { 
+    width: 425px;
+    height: 425px; 
+  }
+  60% { 
+    width: 430px;
+    height: 430px; 
+  }
+  70% { 
+    width: 435px;
+    height: 435px; 
+  }
+  80% { 
+    width: 440px;
+    height: 440px; 
+  }
+  90% { 
+    width: 445px;
+    height: 445px; 
+  }
+  100% { 
+    width: 450px;
+    height: 450px; 
+  }
+}
+
+/* small menu icons */
+.small-icon {
+  width: 15px;
+  height: 15px; 
+}
+
+.small-icon-text {
+  padding-top: 10px;
+}
+
+.clean-button {
+  padding: 0;
+  border: none;
+  background: none;
 }
