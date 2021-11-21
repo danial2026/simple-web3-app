@@ -137,3 +137,12 @@ i {
   text-align: center;
   display: block;
 }
+
+
+.price_change_green {
+    color: #3fbc2f;
+}
+
+.price_change_red {
+  color: #be2d2d;
+}

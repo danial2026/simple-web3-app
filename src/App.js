@@ -1,7 +1,10 @@
 import ethereumIcon from './Ethereum-ETH-icon.png';
+import bitcoinIcon from './bitcoin-icon.png';
 import './App.css';
 import React, { Component } from 'react'
 import MetaMaskOnboarding from '@metamask/onboarding'
+var contractAbi = require('./contractAbi.json');
+
 class App extends Component {
 
   constructor(props) {
@@ -11,24 +14,37 @@ class App extends Component {
       listAccounts: "address",
       curentNetwork:"network",
       etherBalance:"0",
-      ourTokenBalance:"0"
+      ourTokenBalance:"0",
+      price_change_pctBTC:"0.0%",
+      price_change_pctETH:"0.0%",
+      priceBTC:"0",
+      priceETH:"0"
     }
 
     this.connectMetamask()
+
+    this.checkPriceChangePct()
   }
 
   updateInput = (event) =>{
     this.setState({walletAddress : event.target.value})
   }
 
-  getBalance = () =>{
-    const Web3 = require('web3')
-    const web3 = new Web3('https://rinkeby.infura.io/v3/d602f10d8b7a44419c0483e68321da77')
-    
-    web3.eth.getBalance(this.state.walletAddress, (err, bal) => {
-      this.setState({balance: web3.utils.fromWei(bal, 'ether').toString()});
-        console.log('account1 balance: ' ,web3.utils.fromWei(bal, 'ether'))
-    })
+  checkPriceChangePct = async() =>{
+    let priceChangePct
+    await require('axios')
+      .get("https://api.nomics.com/v1/currencies/ticker?key=ce34cb12a2ef4e377b72261f1230eb7b1e7f01cb&ids=BTC,ETH&interval=1d,30d&convert=USD&per-page=100&page=1")
+      .then(response => priceChangePct = response.data)
+
+    console.log(priceChangePct)
+    this.setState(      
+      {
+        price_change_pctBTC: priceChangePct[0]['1d']['price_change_pct'], /* BTC */
+        price_change_pctETH: priceChangePct[1]['1d']['price_change_pct'], /* ETH */
+        priceBTC: Number(parseFloat(priceChangePct[0]['price']).toFixed(2)), /* BTC */
+        priceETH: Number(parseFloat(priceChangePct[1]['price']).toFixed(2)), /* ETH */
+      }
+    );
   }
 
   connectMetamask = async() =>{
@@ -44,18 +60,29 @@ class App extends Component {
 
         const listItems = accounts.map((account) => account);
         
-        // get balance
-        // const Web3 = require('web3')
+        // get ethereum balance
         const web3 = new Web3('https://rinkeby.infura.io/v3/d602f10d8b7a44419c0483e68321da77')
         
         web3.eth.getBalance(listItems[0], (err, bal) => {
           this.setState(
             {
               etherBalance: web3.utils.fromWei(bal, 'ether').toString(),
-              ourTokenBalance: web3.utils.fromWei(bal, 'ether').toString(),
             }
           );
             console.log('account1 balance: ' ,web3.utils.fromWei(bal, 'ether'))
+        })
+
+        // get our token balance
+        const contractAddres = '0x52e12aefc06b38627e27d51b5a87eafee759c57a'  
+        var dappContract = new web3.eth.Contract(contractAbi, contractAddres)
+
+        dappContract.methods.balanceOf(listItems[0]).call((err, bal) => {
+          this.setState(
+            {
+              ourTokenBalance: bal.toString(),
+            }
+          );
+          console.log('balance 1: ',bal)
         })
 
         this.setState(
@@ -92,12 +119,12 @@ class App extends Component {
               <p class="card__title-balance"> balance : </p>              
               <div class='curency-name widget-heading'>
                 <img class='ethereumIcon' src={ethereumIcon}/>
-                <div class="card__balance">{this.state.etherBalance} wei</div>
+                <div class="card__balance">{this.state.etherBalance} ETH</div>
               </div>
 
               <div class='curency-name widget-heading'>
-                <img class='ethereumIcon' src={ethereumIcon}/>
-                <div class="card__balance">{this.state.ourTokenBalance} tbt</div>
+                <img class='ethereumIcon' src={bitcoinIcon}/>
+                <div class="card__balance">{this.state.ourTokenBalance} BTC</div>
               </div>
               <div class="card__current-network">{this.state.curentNetwork}</div>
           </div>
@@ -116,8 +143,8 @@ class App extends Component {
                       </div>
                       
                       <div class="widget-content-right"> 
-                        <div class="">$89</div>
-                        <div class=""> + 0.11%</div>
+                        <div class="">${this.state.priceETH}</div>
+                        <div class={this.state.price_change_pctETH > 0  ? "price_change_green" : "price_change_red" }>{this.state.price_change_pctETH}</div>
                       </div>
                   </div>
               </div>
@@ -129,13 +156,13 @@ class App extends Component {
                   <div class="widget-content-wrapper">
 
                       <div class='curency-name widget-heading'>
-                        <img class='ethereumIcon' src={ethereumIcon}/>
-                        <div class='ethereumBalance'>Ethereum</div>
+                        <img class='ethereumIcon' src={bitcoinIcon}/>
+                        <div class='ethereumBalance'>BTC</div>
                       </div>
 
                       <div class="widget-content-right"> 
-                        <div class="">$1.8</div>
-                        <div class=""> - 2.3%</div>
+                        <div >${this.state.priceBTC}</div>
+                        <div class={this.state.price_change_pctBTC > 0  ? "price_change_green" : "price_change_red"}>{this.state.price_change_pctBTC}</div>
                       </div>
                   </div>
               </div>
