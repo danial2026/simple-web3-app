@@ -15,27 +15,11 @@ class App extends Component {
 
     this.state  = {
       balance: "",
-      walletAddress: ""
-    }
-
-    const ethEnabled = async() => {
-      const Web3 = require('web3')
-      if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-        window.ethereum.enable();
-        var accounts = await window.web3.eth.getAccounts();
-
-        this.setState({walletAddress : accounts[0]})
-        const listItems = data.map((d) => <li key={d.name}>{d.name}</li>);
-
-
-        return true;
-      }
-      return false;
-    }
- 
-    if (!ethEnabled()) {
-      alert("Please install MetaMask to use this dApp!");
+      walletAddress: "",
+      listAccounts: "",
+      curentNetwork:"",
+      etherBalance:"",
+      ourTokenBalance:""
     }
   }
 
@@ -61,6 +45,18 @@ class App extends Component {
         window.ethereum.enable();
         var accounts = await window.web3.eth.getAccounts();
         console.log(accounts)
+
+        const curentNetworkName = await window.web3.eth.net.getNetworkType();
+
+        const listItems = accounts.map((account) => account);
+
+        this.setState(
+          {
+            listAccounts: listItems,
+            curentNetwork: curentNetworkName
+          }
+        );
+
         return true;
       }
       return false;
@@ -81,9 +77,16 @@ class App extends Component {
           <button onClick={this.getBalance}>get balance</button>
           <button onClick={this.connectMetamask}>connect</button>
         </header>
+
         <div>
-      {listItems }
-      </div>
+          <link rel="stylesheet" type="text/css" href="./wallet-template.css"/>
+          <div class="card card--front">
+              <div class="card__number">{this.state.listAccounts}</div>
+              <div class="card__balance">{this.state.etherBalance}</div>
+              <div class="card__balance">{this.state.ourTokenBalance}</div>
+              <div class="card__current-network">{this.state.curentNetwork}</div>
+          </div>
+        </div>
       </div>
     );
   }
