@@ -1,26 +1,20 @@
-import logo from './logo.svg';
+import ethereumIcon from './Ethereum-ETH-icon.png';
 import './App.css';
 import React, { Component } from 'react'
 import MetaMaskOnboarding from '@metamask/onboarding'
-
 class App extends Component {
 
   constructor(props) {
     super(props);
 
-    const getAccountsButton = document.getElementById('getAccounts')
-    const getAccountsResults = document.getElementById('getAccountsResult')
-    const onboarding = new MetaMaskOnboarding();
-
-
     this.state  = {
-      balance: "",
-      walletAddress: "",
-      listAccounts: "",
-      curentNetwork:"",
-      etherBalance:"",
-      ourTokenBalance:""
+      listAccounts: "address",
+      curentNetwork:"network",
+      etherBalance:"0",
+      ourTokenBalance:"0"
     }
+
+    this.connectMetamask()
   }
 
   updateInput = (event) =>{
@@ -49,11 +43,25 @@ class App extends Component {
         const curentNetworkName = await window.web3.eth.net.getNetworkType();
 
         const listItems = accounts.map((account) => account);
+        
+        // get balance
+        // const Web3 = require('web3')
+        const web3 = new Web3('https://rinkeby.infura.io/v3/d602f10d8b7a44419c0483e68321da77')
+        
+        web3.eth.getBalance(listItems[0], (err, bal) => {
+          this.setState(
+            {
+              etherBalance: web3.utils.fromWei(bal, 'ether').toString(),
+              ourTokenBalance: web3.utils.fromWei(bal, 'ether').toString(),
+            }
+          );
+            console.log('account1 balance: ' ,web3.utils.fromWei(bal, 'ether'))
+        })
 
         this.setState(
           {
             listAccounts: listItems,
-            curentNetwork: curentNetworkName
+            curentNetwork: curentNetworkName,
           }
         );
 
@@ -67,26 +75,75 @@ class App extends Component {
     }
   }
 
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
   render() {
     return (
       <div className="App">
         <header title={this.state}>
-          <img src={logo} className="App-logo" alt="logo" />
-          <input class="center-block" type="text" onChange={this.updateInput}></input>
-          <p> balance : {this.state.balance} </p>
-          <button onClick={this.getBalance}>get balance</button>
-          <button onClick={this.connectMetamask}>connect</button>
         </header>
+        <body>
 
         <div>
-          <link rel="stylesheet" type="text/css" href="./wallet-template.css"/>
           <div class="card card--front">
               <div class="card__number">{this.state.listAccounts}</div>
-              <div class="card__balance">{this.state.etherBalance}</div>
-              <div class="card__balance">{this.state.ourTokenBalance}</div>
+              <p class="card__title-balance"> balance : </p>              
+              <div class='curency-name widget-heading'>
+                <img class='ethereumIcon' src={ethereumIcon}/>
+                <div class="card__balance">{this.state.etherBalance} wei</div>
+              </div>
+
+              <div class='curency-name widget-heading'>
+                <img class='ethereumIcon' src={ethereumIcon}/>
+                <div class="card__balance">{this.state.ourTokenBalance} tbt</div>
+              </div>
               <div class="card__current-network">{this.state.curentNetwork}</div>
           </div>
         </div>
+        
+        <div id="wrapper">
+          <ul>
+          <li class="list-group-item">
+              <div class="todo-indicator bg-focus"></div>
+              <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+
+                      <div class='curency-name widget-heading'>
+                        <img class='ethereumIcon' src={ethereumIcon}/>
+                        <div class='ethereumBalance'>Ethereum</div>
+                      </div>
+                      
+                      <div class="widget-content-right"> 
+                        <div class="">$89</div>
+                        <div class=""> + 0.11%</div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+            
+          <li class="list-group-item">
+              <div class="todo-indicator"></div>
+              <div class="widget-content">
+                  <div class="widget-content-wrapper">
+
+                      <div class='curency-name widget-heading'>
+                        <img class='ethereumIcon' src={ethereumIcon}/>
+                        <div class='ethereumBalance'>Ethereum</div>
+                      </div>
+
+                      <div class="widget-content-right"> 
+                        <div class="">$1.8</div>
+                        <div class=""> - 2.3%</div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+          </ul>
+        </div>
+        </body>
+        {/* </div> */}
       </div>
     );
   }
