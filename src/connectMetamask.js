@@ -29,7 +29,7 @@ export default class ConnectMetamask extends Component {
 
     console.log(isConnected);
 
-    if(isConnected == true){
+    if(isConnected === true){
       ReactDOM.render(
         <React.StrictMode>
           <App />

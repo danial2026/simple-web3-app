@@ -1,5 +1,6 @@
 import ethereumIcon from './Ethereum-ETH-icon.png';
 import bitcoinIcon from './bitcoin-icon.png';
+import danicoinIcon from './cat-icon.png';
 import withdrawIcon from './withdraw-icon.png';
 import './App.css';
 import React, { Component , useEffect, useRef, useState} from 'react'
@@ -8,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 var contractAbi = require('./contractAbi.json');
 
+var outTokenSymble = "DANI"
 class App extends Component {
 
   constructor(props) {
@@ -94,7 +96,7 @@ class App extends Component {
         })
 
         // get our token balance
-        const contractAddres = '0x52e12aefc06b38627e27d51b5a87eafee759c57a'  
+        const contractAddres = '0x27422f52bf4cf152f2789b663229793f38cebf2e'  
         var dappContract = new web3.eth.Contract(contractAbi, contractAddres)
 
         dappContract.methods.balanceOf(listItems[0]).call((err, bal) => {
@@ -154,8 +156,8 @@ class App extends Component {
               </div>
 
               <div class='curency-name widget-heading'>
-                <img class='ethereumIcon' src={bitcoinIcon}/>
-                <div class="card__balance">{this.state.ourTokenBalance} BTC</div>
+                <img class='ethereumIcon' src={danicoinIcon}/>
+                <div class="card__balance">{this.state.ourTokenBalance} {outTokenSymble}</div>
               </div>
               <div class="card__current-network">{this.state.curentNetwork}</div>
           </div>
@@ -220,7 +222,6 @@ class App extends Component {
                       <Menu
                         id="menu-appbar"
                         anchorEl={this.state.anchorEl}
-                        getContentAnchorEl={null}
                         open={this.state.showMenu}
                         onClose={this.handleClose}
                         MenuListProps={{
