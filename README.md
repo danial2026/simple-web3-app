@@ -1,7 +1,7 @@
-simple web3 app:
-![image](https://raw.githubusercontent.com/danial2026/simple-web3-app/main/src/cat-icon.png)
+<img src="https://raw.githubusercontent.com/danial2026/simple-web3-app/main/src/cat-icon.png" width="80" height="80">
+# simple web3 app :
+this is a simple react app which interacts with testnet rinkeby
 
-<img src="https://raw.githubusercontent.com/danial2026/simple-web3-app/main/src/cat-icon.png" width="50" height="50">
 
 ## screen record
 ![Alt Text](https://raw.githubusercontent.com/danial2026/simple-web3-app/main/screen-record.gif)
