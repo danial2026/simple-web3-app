@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import metamaskIcon from './metamask.svg';
+import metamaskIcon from './../assets/metamask.svg';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from '../App';
 
 export default class ConnectMetamask extends Component {
 

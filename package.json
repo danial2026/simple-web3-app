@@ -13,14 +13,18 @@
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
     "bootstrap-icons": "^1.7.1",
+    "ipfs-http-client": "^54.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-router-dom": "^6.0",
     "react-scripts": "^4.0.3",
+    "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1",
     "web3": "^1.6.1"
   },
   "scripts": {
+    "dev": "nodemon --exec react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
