@@ -1,0 +1,228 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.create-nft--icon {
+  font: 10.6666666667px 'Helvetica Neue', Helvetica, sans-serif;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin-top: -10%;
+  padding-bottom: 40px;
+}
+
+.create-nft--input {
+  position: relative;
+  width: 415px;  
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-nft--button {
+  position: relative;
+  width: 415px;  
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-nft--create-button {
+  width: 100%;
+  height: 100%;
+  margin-top: -15px;
+  border-radius: 20px;
+  padding-left: 30px;
+
+  width: 200px;
+  margin-left: -50px;
+  border: 0px;
+  background-color: #5e76aa20;
+}
+
+.create-nft--cancel-button {
+  width: 100%;
+  height: 100%;
+  margin-top: -15px;
+  border-radius: 20px;
+  padding-left: 30px;
+
+  width: 200px;
+  margin-right: -50px;
+  border: 0px;
+  background-color: #5e76aa20;
+}
+
+.nft-input {
+  width: 100%;
+  height: 100%;
+  margin-top: -15px;
+  border-radius: 20px;
+  padding-left: 30px;
+  background-color: #5e76aa20;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.widget-content {
+  padding: 1rem;
+  flex-direction: row;
+  align-items: center
+}
+
+.widget-content .widget-content-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+  align-items: center
+}
+
+.widget-content .widget-content-right.widget-content-actions {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s
+}
+
+.widget-content .widget-content-right {
+  margin-left: auto
+}
+
+.widget-content .widget-content-center {
+  margin: auto
+}
+
+.curency-name {
+  display: flex;
+}
+
+/* icon */
+.ipfs-icon { 
+  width: 150px;
+  height: 150px;
+}
+
+.nft-icon { 
+  width: 150px;
+  height: 150px;
+}
+
+/* nftInput */
+.nftInput {
+  font-size: 20px;
+  text-align: left;
+}
+
+/* cancel btn*/
+.btn-cancel {
+  /* color: #FFF; */
+  transition: all 0.5s;
+  position: relative; 
+  background-color: transparent;
+}
+.btn-cancel span {
+  z-index: 2; 
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%; 
+}
+.btn-cancel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.5s;
+  border-radius: 20px;
+  background-color: #d84d4820;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.btn-cancel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.5s;
+  border-radius: 20px;
+  background-color: #d84d4820;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.btn-cancel:hover::before {
+  transform: rotate(-45deg);
+
+  background-color: #d84d4820;;
+  border: 1px solid rgba(0, 0, 0, 0.125);}
+.btn-cancel:hover::after {
+  transform: rotate(45deg);
+
+  background-color: #d84d4820;;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+/* create btn */
+.btn-create {
+  /* color: #FFF; */
+  transition: all 0.5s;
+  position: relative;
+  background-color: transparent;
+}
+.btn-create::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 20px;
+  background-color: #39c24b20;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  transition: all 0.3s;
+}
+.btn-create:hover::before {
+  opacity: 0 ;
+  transform: scale(0.5,0.5);
+}
+.btn-create::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-radius: 20px;
+  background-color: #2de94a20;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  transform: scale(1.2,1.2);
+}
+.btn-create:hover::after {
+  opacity: 1;
+  transform: scale(1,1);
+}

@@ -49,10 +49,6 @@ class Home extends Component {
     console.log('test')
   }
 
-  updateInput = (event) =>{
-    this.setState({walletAddress : event.target.value})
-  }
-
   checkPriceChangePct = async() =>{
     let priceChangePct
     await require('axios')

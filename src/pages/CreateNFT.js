@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import React, { Component , useEffect, useRef, useState} from 'react'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import web3 from 'web3'
+import './CreateNFT.css';
+import ipfsIcon from './../assets/Ipfs-icon.png';
+import nftIcon from './../assets/nft-icon.png';
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
@@ -13,12 +16,54 @@ var contractAbi = require('./../contract/contractAbi.json');
 // import NFT from '../contracts/NFT.sol/NFT.json'
 // import Market from '../contracts/NFTMarket.sol/NFTMarket.json'
 
-export default function CreateNFT() {
-  const [fileUrl, setFileUrl] = useState(null)
-  const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
-//   const router = useRouter()
+class CreateNFT extends Component{
+  
+  constructor(props) {
+    super(props);
 
-  async function createSale(url) {
+
+    this.state  = {
+      fileUrl: "",
+      validInputs:"",
+      formInput:""
+    }
+  }
+
+  // async setStates() {
+  //   const [fileUrl, setFileUrl] = useState(null)
+  //   const [validInputs, setValidInputs] = useState(null)
+  //   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
+  // //   const router = useRouter()
+  
+  // }
+  setFileUrl = async(inputArg) =>{
+
+    this.setState(
+      {
+        fileUrl: inputArg,
+      }
+    );
+  }
+  
+  setValidInputs = async(inputArg) =>{
+
+    this.setState(
+      {
+        validInputs: inputArg,
+      }
+    );
+  }
+  
+  updateFormInput = async(inputArg) =>{
+
+    this.setState(
+      {
+        formInput: inputArg,
+      }
+    );
+  }
+  
+  createSale = async(url) =>{
       console.log(url);
     // const web3Modal = new Web3Modal({
     //   network: "mainnet",
@@ -69,8 +114,11 @@ export default function CreateNFT() {
       })
     }
   }
-  async function onChange(e) {
+
+  onChange = async(e) =>{
+    this.setValidInputs(false) 
     const file = e.target.files[0];
+    console.log(typeof (file))
     try {
       const added = await client.add(
         file,
@@ -79,63 +127,131 @@ export default function CreateNFT() {
         }
       )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      setFileUrl(url)
-    } catch (error) {
-      console.log('Error uploading file: ', error);
-    }  
-  }
-  async function createMarket() {
-    const { name, description, price } = formInput
-    if (!name || !description || !price || !fileUrl) return
-    // upload file to IPFS
-    const data = JSON.stringify({
-      name, description, image: fileUrl
-    })
-    try {
-      const added = await client.add(data)
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
-      createSale(url)
+      this.setFileUrl(url)
     } catch (error) {
       console.log('Error uploading file: ', error);
     }  
   }
 
+  createNFTJsonFile = async() =>{
+    const { name, description, price } = this.state.formInput
+    if (!name || !description || !price || !this.state.fileUrl) {
+      this.setValidInputs(true) 
+      this.setFileUrl(false)
+      return
+    }
+    // upload file to IPFS
+    const data = JSON.stringify({
+      name, description, file: this.state.fileUrl
+    })
+    try {
+      const added = await client.add(data)
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      // this.createSale(url)
+    } catch (error) {
+      console.log('Error uploading file: ', error);
+    }  
+  }
+
+  cancelCreation = async() =>{ 
+  }
+
+  render() {
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col pb-12">
-        <input 
-          placeholder="NFT Name"
-          className="mt-8 border rounded p-4"
-          onChange={e => updateFormInput({ ...formInput, name: e.target.value })}
-        />
-        <input
-          placeholder="NFT Description"
-          className="mt-2 border rounded p-4"
-          onChange={e => updateFormInput({ ...formInput, description: e.target.value })}
-        />
-        <input
-          placeholder="NFT Price in Eth"
-          className="mt-2 border rounded p-4"
-          onChange={e => updateFormInput({ ...formInput, price: e.target.value })}
-        />
-        <input
-          type="file"
-          name="NFT"
-          className="my-4"
-          onChange={onChange}
-        />
-        {
-          fileUrl && (
-            <img className="rounded mt-4" width="350" src={fileUrl} />,
-            <h3>
-                ✓ finish the upload
-            </h3>
-          )
-        }
-        <button onClick={createMarket} className="mt-4 bg-blue-500 text-white rounded p-4 shadow-lg">
-          Create NFT
-        </button>
-      </div>
+  <div className="App">
+    <div id="wrapper">
+      <ul>
+        <li class="create-nft--icon">
+            <div class="widget-content">
+                <div class="widget-content-wrapper">
+                  {/* <div class="card card--front"> */}
+                    <img class='nft-icon' src={nftIcon}/>
+                  {/* </div> */}
+                </div>
+            </div>
+        </li>
+
+        <li class="create-nft--input">
+            <div class="widget-content">
+                <div class="widget-content-wrapper">
+                  <input 
+                    placeholder="NFT Name"
+                    class='nftInput widget-content nft-input'
+                    onChange={e => this.updateFormInput({ ...this.state.formInput, name: e.target.value })}
+                  />
+                </div>
+            </div>
+        </li>
+
+        <li class="create-nft--input">
+            <div class="widget-content">
+                <div class="widget-content-wrapper">
+                  <input 
+                    placeholder="NFT Description"
+                    class='nftInput widget-content nft-input'
+                    onChange={e => this.updateFormInput({ ...this.state.formInput, description: e.target.value })}
+                    />
+                </div>
+            </div>
+        </li>
+
+        <li class="create-nft--input">
+            <div class="widget-content">
+                <div class="widget-content-wrapper">
+                  <input 
+                    placeholder="NFT Price"
+                    class='nftInput widget-content nft-input'
+                    onChange={e => this.updateFormInput({ ...this.state.formInput, price: e.target.value })}
+                  />
+                </div>
+            </div>
+        </li>
+
+        <li class="create-nft--input">
+          <input
+            type="file"
+            name="NFT"
+            class='nftInput widget-content'
+            onChange={this.onChange}
+          />{
+            this.state.fileUrl && (
+              <img className="rounded mt-4" width="350" src={this.state.fileUrl} />,
+              <div>
+                  ✓ finish the upload
+              </div>
+            )
+          }
+          {
+            this.state.validInputs && (
+              <div>
+                  ✗ invalid inputs
+              </div>
+            )
+          }
+        </li>
+
+        <li class="create-nft--button">
+          <div class="widget-content">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-left"> 
+                <button onClick={this.createNFTJsonFile} className="create-nft--create-button widget-content btn-create">
+                  Create NFT
+                </button>
+              </div>
+
+              <div class="widget-content-right"> 
+                <button onClick={this.cancelCreation} className="create-nft--cancel-button widget-content btn-cancel">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
   )
+  }
 }
+
+export default CreateNFT;
