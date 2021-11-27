@@ -173,15 +173,14 @@ code {
 .btn-cancel:hover::before {
   transform: rotate(-45deg);
 
-  background-color: #d84d4820;;
+  background-color: #d84d4820;
   border: 1px solid rgba(0, 0, 0, 0.125);}
 .btn-cancel:hover::after {
   transform: rotate(45deg);
 
-  background-color: #d84d4820;;
+  background-color: #d84d4820;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
-
 
 /* create btn */
 .btn-create {
@@ -225,4 +224,13 @@ code {
 .btn-create:hover::after {
   opacity: 1;
   transform: scale(1,1);
+}
+
+/*  */
+.invalid-input {
+  color: #d84d48c9;
+}
+
+.finish-upload {
+  color: #39c24bc0;
 }

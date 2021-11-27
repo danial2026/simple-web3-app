@@ -164,9 +164,7 @@ class CreateNFT extends Component{
         <li class="create-nft--icon">
             <div class="widget-content">
                 <div class="widget-content-wrapper">
-                  {/* <div class="card card--front"> */}
                     <img class='nft-icon' src={nftIcon}/>
-                  {/* </div> */}
                 </div>
             </div>
         </li>
@@ -215,15 +213,14 @@ class CreateNFT extends Component{
             onChange={this.onChange}
           />{
             this.state.fileUrl && (
-              <img className="rounded mt-4" width="350" src={this.state.fileUrl} />,
-              <div>
+              <div class="finish-upload">
                   ✓ finish the upload
               </div>
             )
           }
           {
             this.state.validInputs && (
-              <div>
+              <div class="invalid-input">
                   ✗ invalid inputs
               </div>
             )
