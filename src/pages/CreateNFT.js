@@ -29,7 +29,8 @@ class CreateNFT extends Component{
       filePercentage: "",
       jsonUrl:"",
       validInputs:"",
-      formInput:""
+      formInput:"",
+      tokenIsminted:""
     }
   }
 
@@ -77,32 +78,17 @@ class CreateNFT extends Component{
     );
   }
   
-  createSale = async(url) =>{
-      console.log(url);
-    // const web3Modal = new Web3Modal({
-    //   network: "mainnet",
-    //   cacheProvider: true,
-    // });
-    // const connection = await web3Modal.connect()
-    // const provider = new ethers.providers.Web3Provider(connection)    
-    // const signer = provider.getSigner()
-    
-    // let contract = new ethers.Contract(nftaddress, NFT.abi, signer)
-    // let transaction = await contract.createToken(url)
-    // let tx = await transaction.wait()
-    // let event = tx.events[0]
-    // let value = event.args[2]
-    // let tokenId = value.toNumber()
-    // const price = web3.utils.toWei(formInput.price, 'ether')
+  setTokenIsminted = async(inputArg) =>{
+
+    this.setState(
+      {
+        tokenIsminted: inputArg,
+      }
+    )
+  }
   
-    // const listingPrice = web3.utils.toWei('0.1', 'ether')
-
-    // contract = new ethers.Contract(nftmarketaddress, Market.abi, signer)
-    // transaction = await contract.createMarketItem(nftaddress, tokenId, price, { value: listingPrice })
-    
-    // await transaction.wait()
-    // router.push('/')
-
+  createSale = async(url) =>{
+    console.log(url);
 
     const Web3 = require('web3')
     if (window.web3) {
@@ -110,20 +96,15 @@ class CreateNFT extends Component{
       window.ethereum.enable();
       var accounts = await window.web3.eth.getAccounts();
 
-      const curentNetworkName = await window.web3.eth.net.getNetworkType();
+      const accountsList = accounts.map((account) => account);
+      // call mintNFT method
+      const contractAddres = '0x366f557424e37d3cbc4e1c4be9c67c1fd14e77ef'  
+      var dappContract = new window.web3.eth.Contract(contractAbi, contractAddres)
 
-      const listItems = accounts.map((account) => account);
+      console.log(accountsList[0])
 
-      // get our token balance
-      const contractAddres = '0x27422f52bf4cf152f2789b663229793f38cebf2e'  
-      var dappContract = new web3.eth.Contract(contractAbi, contractAddres)
-
-      dappContract.methods.balanceOf(listItems[0]).call((err, bal) => {
-        this.setState(
-          {
-            ourTokenBalance: bal.toString(),
-          }
-        );
+      dappContract.methods.mintNFT(accountsList[0], url).send({from:accountsList[0]}).then((err, arg) => {
+        this.setTokenIsminted(true)
         console.log(' NFT minted ')
       })
     }
@@ -165,7 +146,7 @@ class CreateNFT extends Component{
       const added = await client.add(data)
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
       this.setJsonUrl(url)
-      // this.createSale(url)
+      await this.createSale(url)
     } catch (error) {
       console.log('Error uploading file: ', error);
     }  
@@ -244,7 +225,16 @@ class CreateNFT extends Component{
               </div>,
               <div class="finish-upload-url">
                 <a href={this.state.fileUrl} target="_blank">
-                  file is on IPFS
+                  ✓ file is on IPFS
+                </a>
+              </div>
+            )
+          }
+          {
+            this.state.jsonUrl && (
+              <div class="">
+                <a href={this.state.jsonUrl} target="_blank">
+                  ✓ json is on IPFS
                 </a>
               </div>
             )
@@ -253,6 +243,13 @@ class CreateNFT extends Component{
             this.state.validInputs && (
               <div class="invalid-input">
                   ✗ invalid inputs
+              </div>
+            )
+          }
+          {
+            this.state.tokenIsminted && (
+              <div class="">
+                ✓ NFT is minted 
               </div>
             )
           }
@@ -274,15 +271,6 @@ class CreateNFT extends Component{
               </div>
             </div>
           </div>
-          {
-            this.state.jsonUrl && (
-              <div class="">
-                <a href={this.state.jsonUrl} target="_blank">
-                  json is on IPFS
-                </a>
-              </div>
-            )
-          }
         </li>
       </ul>
     </div>
