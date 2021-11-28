@@ -4,7 +4,6 @@ import web3 from 'web3'
 import './CreateNFT.css';
 import ipfsIcon from './../assets/Ipfs-icon.png';
 import nftIcon from './../assets/nft-icon.png';
-import ProgressBar from 'react-bootstrap/ProgressBar'
 import Progressbar from './Progress_bar';
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
