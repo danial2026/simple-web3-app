@@ -24,18 +24,13 @@ class CreateNFT extends Component{
 
     this.state  = {
       fileUrl: "",
+      filePercentage: "",
+      jsonUrl:"",
       validInputs:"",
       formInput:""
     }
   }
 
-  // async setStates() {
-  //   const [fileUrl, setFileUrl] = useState(null)
-  //   const [validInputs, setValidInputs] = useState(null)
-  //   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
-  // //   const router = useRouter()
-  
-  // }
   setFileUrl = async(inputArg) =>{
 
     this.setState(
@@ -44,7 +39,24 @@ class CreateNFT extends Component{
       }
     );
   }
+  setFilePercentage = async(inputArg) =>{
+
+    this.setState(
+      {
+        filePercentage: inputArg,
+      }
+    );
+  }
   
+  setJsonUrl = async(inputArg) =>{
+
+    this.setState(
+      {
+        jsonUrl: inputArg,
+      }
+    );
+  }
+
   setValidInputs = async(inputArg) =>{
 
     this.setState(
@@ -118,12 +130,15 @@ class CreateNFT extends Component{
   onChange = async(e) =>{
     this.setValidInputs(false) 
     const file = e.target.files[0];
-    console.log(typeof (file))
     try {
       const added = await client.add(
         file,
         {
-          progress: (prog) => console.log(`received: ${prog}`)
+          progress: (prog) =>{
+            this.setFilePercentage(Math.round((prog/file.size)*100))
+            console.log(`received: ${prog}`)
+            console.log(`all: ${file.size}`)
+          } 
         }
       )
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
@@ -147,6 +162,7 @@ class CreateNFT extends Component{
     try {
       const added = await client.add(data)
       const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      this.setJsonUrl(url)
       // this.createSale(url)
     } catch (error) {
       console.log('Error uploading file: ', error);
@@ -211,10 +227,23 @@ class CreateNFT extends Component{
             name="NFT"
             class='nftInput widget-content'
             onChange={this.onChange}
-          />{
+          />
+          {
+            this.state.filePercentage && (
+              <div class="finish-upload">
+                  {this.state.filePercentage} %
+              </div>
+            )
+          }
+          {
             this.state.fileUrl && (
               <div class="finish-upload">
                   ✓ finish the upload
+              </div>,
+              <div class="finish-upload-url">
+                <a href={this.state.fileUrl} target="_blank">
+                  file is on IPFS
+                </a>
               </div>
             )
           }
@@ -243,6 +272,15 @@ class CreateNFT extends Component{
               </div>
             </div>
           </div>
+          {
+            this.state.jsonUrl && (
+              <div class="">
+                <a href={this.state.jsonUrl} target="_blank">
+                  json is on IPFS
+                </a>
+              </div>
+            )
+          }
         </li>
       </ul>
     </div>
