@@ -1,6 +1,5 @@
 import React, { Component , useEffect, useRef, useState} from 'react'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
-import web3 from 'web3'
 import './CreateNFT.css';
 import ipfsIcon from './../assets/Ipfs-icon.png';
 import nftIcon from './../assets/nft-icon.png';

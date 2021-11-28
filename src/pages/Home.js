@@ -52,7 +52,9 @@ class Home extends Component {
   checkPriceChangePct = async() =>{
     let priceChangePct
     await require('axios')
-      .get("https://api.nomics.com/v1/currencies/ticker?key=ce34cb12a2ef4e377b72261f1230eb7b1e7f01cb&ids=BTC,ETH&interval=1d,30d&convert=USD&per-page=100&page=1")
+      .get(
+        "https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/currencies/ticker?key=ce34cb12a2ef4e377b72261f1230eb7b1e7f01cb&ids=BTC,ETH&interval=1d,30d&convert=USD&per-page=100&page=1"
+      )
       .then(response => priceChangePct = response.data)
 
     console.log(priceChangePct)
