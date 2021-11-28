@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  sample:
+  danialbcsite:
     container_name: danialbcsite
     build:
       context: .
