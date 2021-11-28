@@ -14,6 +14,10 @@ code {
     monospace;
 }
 
+.create-nft {
+  margin-top: -17%;
+}
+
 .create-nft--icon {
   font: 10.6666666667px 'Helvetica Neue', Helvetica, sans-serif;
   position: relative;
@@ -22,7 +26,6 @@ code {
   text-align: left;
   border-radius: 20px;
   box-sizing: border-box;
-  margin-top: -15%;
   padding-bottom: 40px;
 }
 

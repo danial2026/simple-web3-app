@@ -9,13 +9,6 @@ const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 var contractAbi = require('./../contract/contractAbi.json');
 
-// import {
-//   nftaddress, nftmarketaddress
-// } from '../config'
-
-// import NFT from '../contracts/NFT.sol/NFT.json'
-// import Market from '../contracts/NFTMarket.sol/NFTMarket.json'
-
 class CreateNFT extends Component{
   
   constructor(props) {
@@ -155,7 +148,7 @@ class CreateNFT extends Component{
 
   render() {
   return (
-  <div className="App">
+  <div className="App create-nft">
     <div id="wrapper">
       <ul>
         <li class="create-nft--icon">
