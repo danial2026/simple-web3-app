@@ -13,6 +13,7 @@ class TransferPopup extends Component{
       toAddress: "",
       amount: "",
       invalidInputs: "",
+      transactionSent: false,
     }
   }
 
@@ -40,44 +41,13 @@ class TransferPopup extends Component{
       }
     );
   }
+  setTransactionSent = async(inputArg) =>{
 
-  treansferToken2 = async() =>{
-    const ethEnabled = async() => {
-      const Web3 = require('web3')
-      if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-        window.ethereum.enable();
-        var accounts = await window.web3.eth.getAccounts();
-        console.log(accounts)
-
-        const curentNetworkName = await window.web3.eth.net.getNetworkType();
-
-        const listItems = accounts.map((account) => account);
-
-        // get our token balance
-        const contractAddres = '0x27422f52bf4cf152f2789b663229793f38cebf2e'  
-        var dappContract = new window.web3.eth.Contract(contractAbi, contractAddres)
-
-        dappContract.methods.balanceOf(listItems[0]).call((err, bal) => {
-
-          console.log('balance 1: ',bal)
-        })
-
-        this.setState(
-          {
-            listAccounts: listItems,
-            curentNetwork: curentNetworkName,
-          }
-        );
-
-        return true;
+    this.setState(
+      {
+        transactionSent: inputArg,
       }
-      return false;
-    }
-
-    if (!ethEnabled()) {
-      alert("Please install MetaMask to use this dApp!");
-    }
+    );
   }
 
   treansferToken = async() =>{
@@ -92,7 +62,7 @@ class TransferPopup extends Component{
       const contractAddres = '0x27422f52bf4cf152f2789b663229793f38cebf2e'  
       var dappContract = new window.web3.eth.Contract(contractAbi, contractAddres)
 
-      console.log(accountsList[0])
+      this.setTransactionSent(true)
 
       dappContract.methods.transfer(this.state.toAddress, this.state.amount).send({from:accountsList[0]}).then((err, arg) => {
         console.log(' transfered ')
@@ -147,6 +117,13 @@ class TransferPopup extends Component{
                         this.state.invalidInputs && (
                           <div class="invalid-input">
                               ✗ invalid inputs
+                          </div>
+                        )
+                      }
+                      {
+                        this.state.transactionSent && (
+                          <div class="transaction-sent">
+                              ⌛	 waiting for network
                           </div>
                         )
                       }
