@@ -2,7 +2,8 @@
 
 # simple web3 app :
 this is a simple react app which interacts with testnet rinkeby
-
+  
+[![](https://www.youtube.com/watch?v=vjhklxvBgjs)
 
 ## screen record
 ![Alt Text](https://raw.githubusercontent.com/danial2026/simple-web3-app/main/screen-record.gif)
