@@ -11,6 +11,7 @@ import Reports from './pages/Reports';
 import Transactions from './pages/Transactions';
 import CreateNFT from './pages/CreateNFT';
 import MarketPlace from './pages/MarketPlace';
+import Transfer from './pages/TransferPopup';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/transactions' element={<Transactions />} />
         <Route path='/market-place' element={<MarketPlace />} />
         <Route path='/reports' element={<Reports />} />
+        <Route path='/transfer' element={<Transfer />} />
       </Routes>
     </Router>
     </>

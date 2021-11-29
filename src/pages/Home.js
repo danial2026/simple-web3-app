@@ -6,6 +6,9 @@ import './Home.css';
 import React, { Component , useEffect, useRef, useState} from 'react'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
+
+import TransferPopup from './TransferPopup.js'
 
 var contractAbi = require('./../contractAbi.json');
 
@@ -26,11 +29,19 @@ class Home extends Component {
       priceETH:"0",
       showMenu: false,
       anchorEl: false,
+      showPopup: false,
     }
 
     this.connectMetamask()
 
     this.checkPriceChangePct()
+  }
+  toggleTransferPopup = () => {
+    this.setState(
+      {
+        showPopup: !this.state.showPopup
+      }
+    );
   }
   handleClick = (event) => {
     this.setState(
@@ -208,10 +219,18 @@ class Home extends Component {
                       <img class='small-icon' src={withdrawIcon}/>                      
                       <div class="small-icon-text">withdraw</div>
                     </button>
-                    <button class="widget-content-center clean-button" onClick={this.logTest}> 
+                    <button class="widget-content-center clean-button" onClick={this.toggleTransferPopup}> 
                       <i class='bi bi-box-arrow-up'></i>                        
                       <div class="small-icon-text">transfer</div>
                     </button>
+                    {
+                      this.state.showPopup ? 
+                      <TransferPopup
+                        text='Close Me'
+                        closePopup={this.toggleTransferPopup.bind(this)}
+                      />
+                      : null
+                    }
                     <button class="widget-content-center clean-button" onClick={this.handleClick}> 
                       <i class='bi bi-three-dots'></i>                        
                       <div class="small-icon-text">more</div>

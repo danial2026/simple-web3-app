@@ -19,7 +19,7 @@ class CreateNFT extends Component{
       fileUrl: "",
       filePercentage: "",
       jsonUrl:"",
-      validInputs:"",
+      invalidInputs:"",
       formInput:"",
       tokenIsminted:""
     }
@@ -51,11 +51,11 @@ class CreateNFT extends Component{
     );
   }
 
-  setValidInputs = async(inputArg) =>{
+  setInvalidInputs = async(inputArg) =>{
 
     this.setState(
       {
-        validInputs: inputArg,
+        invalidInputs: inputArg,
       }
     );
   }
@@ -102,7 +102,7 @@ class CreateNFT extends Component{
   }
 
   onChange = async(e) =>{
-    this.setValidInputs(false) 
+    this.setInvalidInputs(false) 
     const file = e.target.files[0];
     try {
       const added = await client.add(
@@ -125,7 +125,7 @@ class CreateNFT extends Component{
   createNFTJsonFile = async() =>{
     const { name, description } = this.state.formInput
     if (!name || !description || !this.state.fileUrl) {
-      this.setValidInputs(true) 
+      this.setInvalidInputs(true) 
       this.setFileUrl(false)
       return
     }
@@ -219,7 +219,7 @@ class CreateNFT extends Component{
             )
           }
           {
-            this.state.validInputs && (
+            this.state.invalidInputs && (
               <div class="invalid-input">
                   ✗ invalid inputs
               </div>
@@ -238,7 +238,7 @@ class CreateNFT extends Component{
           <div class="widget-content">
             <div class="widget-content-wrapper">
               <div class="widget-content-left"> 
-                <button onClick={this.createNFTJsonFile} className="create-nft--create-button widget-content btn-create">
+                <button onClick={this.createNFTJsonFile} className="create-nft--create-button widget-content btn-ok">
                   Create NFT
                 </button>
               </div>

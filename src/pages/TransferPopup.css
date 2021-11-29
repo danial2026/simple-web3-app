@@ -1,0 +1,108 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.transter-popup{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding-bottom: 40px;
+  margin-left: -7%;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+
+.popup_inner {
+  position: absolute;
+
+  left: 11%;
+  right: 9%;
+
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: white;
+  border-radius: 25px;
+  
+  width: 500px;
+  height: 400px;
+}
+
+.transfer-token--transfer-button {
+  width: 100%;
+  height: 100%;
+  margin-top: -15px;
+  border-radius: 20px;
+  padding-left: 30px;
+
+  width: 170px;
+  border: 0px;
+  background-color: #5e76aa20;
+}
+
+.transfer-token--cancel-button {
+  width: 100%;
+  height: 100%;
+  margin-top: -15px;
+  border-radius: 20px;
+  /* padding-left: 30px; */
+
+  width: 170px;
+  border: 0px;
+  background-color: #5e76aa20;
+}
+
+.transfer-title {
+  position: relative;
+  height: 50px;
+  width: 415px;  
+  font-size: 42px;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.transter-token--input {
+  position: relative;
+  width: 415px;  
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.transter-token--button {
+  position: relative;
+  width: 415px;  
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}

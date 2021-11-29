@@ -185,14 +185,14 @@ code {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-/* create btn */
-.btn-create {
+/* ok btn */
+.btn-ok {
   /* color: #FFF; */
   transition: all 0.5s;
   position: relative;
   background-color: transparent;
 }
-.btn-create::before {
+.btn-ok::before {
   content: '';
   position: absolute;
   top: 0;
@@ -205,11 +205,11 @@ code {
   border: 1px solid rgba(0, 0, 0, 0.125);
   transition: all 0.3s;
 }
-.btn-create:hover::before {
+.btn-ok:hover::before {
   opacity: 0 ;
   transform: scale(0.5,0.5);
 }
-.btn-create::after {
+.btn-ok::after {
   content: '';
   position: absolute;
   top: 0;
@@ -224,7 +224,7 @@ code {
   border: 1px solid rgba(0, 0, 0, 0.125);
   transform: scale(1.2,1.2);
 }
-.btn-create:hover::after {
+.btn-ok:hover::after {
   opacity: 1;
   transform: scale(1,1);
 }
