@@ -123,8 +123,8 @@ class CreateNFT extends Component{
   }
 
   createNFTJsonFile = async() =>{
-    const { name, description, price } = this.state.formInput
-    if (!name || !description || !price || !this.state.fileUrl) {
+    const { name, description } = this.state.formInput
+    if (!name || !description || !this.state.fileUrl) {
       this.setValidInputs(true) 
       this.setFileUrl(false)
       return
@@ -179,18 +179,6 @@ class CreateNFT extends Component{
                     class='nftInput widget-content nft-input'
                     onChange={e => this.updateFormInput({ ...this.state.formInput, description: e.target.value })}
                     />
-                </div>
-            </div>
-        </li>
-
-        <li class="create-nft--input">
-            <div class="widget-content">
-                <div class="widget-content-wrapper">
-                  <input 
-                    placeholder="NFT Price"
-                    class='nftInput widget-content nft-input'
-                    onChange={e => this.updateFormInput({ ...this.state.formInput, price: e.target.value })}
-                  />
                 </div>
             </div>
         </li>
