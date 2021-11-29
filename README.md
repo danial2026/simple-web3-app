@@ -8,4 +8,4 @@ this is a simple react app which interacts with testnet rinkeby
 https://www.youtube.com/watch?v=vjhklxvBgjs
 
 ## demo available on :
-http://185.110.189.236:3001/
+http://blochchaindemo.danialmohamadzadeh.ir
