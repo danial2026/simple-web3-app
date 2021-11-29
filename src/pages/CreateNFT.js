@@ -7,7 +7,7 @@ import Progressbar from './Progress_bar';
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
-var contractAbi = require('./../contract/contractAbi.json');
+var contractAbi = require('./../contract/nftAbi.json');
 
 class CreateNFT extends Component{
   

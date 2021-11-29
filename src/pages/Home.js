@@ -95,7 +95,7 @@ class Home extends Component {
 
         // get our token balance
         const contractAddres = '0x27422f52bf4cf152f2789b663229793f38cebf2e'  
-        var dappContract = new web3.eth.Contract(contractAbi, contractAddres)
+        var dappContract = new window.web3.eth.Contract(contractAbi, contractAddres)
 
         dappContract.methods.balanceOf(listItems[0]).call((err, bal) => {
           this.setState(
