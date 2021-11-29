@@ -3,10 +3,8 @@
 # simple web3 app :
 this is a simple react app which interacts with testnet rinkeby
   
+## screen record
 [![youtube demo](https://i.ytimg.com/vi/vjhklxvBgjs/maxresdefault.jpg)](https://www.youtube.com/watch?v=vjhklxvBgjs)
 
-## screen record
-![Alt Text](https://raw.githubusercontent.com/danial2026/simple-web3-app/main/screen-record.gif)
-
-## screen shot
-![alt text](https://raw.githubusercontent.com/danial2026/simple-web3-app/main/Screenshot.png)
+## demo available on :
+http://185.110.189.236:3001/
