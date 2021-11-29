@@ -11,6 +11,6 @@ jobs:
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY_ED25519 }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: sh deploy.sh
