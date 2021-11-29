@@ -4,8 +4,8 @@
 this is a simple react app which interacts with testnet rinkeby
   
 ## screen record
-[![youtube demo](https://i.ytimg.com/vi/vjhklxvBgjs/maxresdefault.jpg)](https://www.youtube.com/watch?v=vjhklxvBgjs)
-https://www.youtube.com/watch?v=vjhklxvBgjs
+[![youtube demo](https://i.ytimg.com/vi/vjhklxvBgjs/maxresdefault.jpg)](https://www.youtube.com/watch?v=DWNFJwK8QaQ)
+https://www.youtube.com/watch?v=DWNFJwK8QaQ
 
 ## demo available on :
 http://blochchaindemo.danialmohamadzadeh.ir
