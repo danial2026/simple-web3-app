@@ -13,5 +13,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY_ED25519 }}
         port: ${{ secrets.PORT }}
-        script: echo 'test'
-#         script: sh deploy.sh
+        script: sh deploy.sh
