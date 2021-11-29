@@ -1,2 +1,6 @@
  #!/bin/bash
-echo 'helloworld' > hellofile.txt
+echo ' >> start'
+
+cd /root/danialsWebSite/simple-web3-app
+
+git pull
