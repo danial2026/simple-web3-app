@@ -13,5 +13,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: pwd && ls
+        script: cd /root/danialsWebSite/simple-web3-app && sh deploy.sh
         
