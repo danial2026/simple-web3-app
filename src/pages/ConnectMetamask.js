@@ -7,6 +7,8 @@ export default class ConnectMetamask extends Component {
 
   constructor(props) {
     super(props);
+    
+    this.connectBtnPressed()
   }
 
   ethEnabled = async() => {
@@ -43,10 +45,10 @@ export default class ConnectMetamask extends Component {
     return (
       <div className="connectMetamask">
         
-        <img class='metamaskIcon shake-image' src={metamaskIcon} onClick={this.connectBtnPressed} title="click to connect"/>
+        <img class='metamaskIcon shake-image' src={metamaskIcon} onClick={this.connectBtnPressed} title="connecting to metamask"/>
         
         <dev class='metamaskText'>
-          click to connect
+          connecting to metamask
         </dev>
       </div>
     );  
