@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/simple-web3-app/static/css/main.3ce973dc.chunk.css",
+    "main.js": "/simple-web3-app/static/js/main.1c9a466b.chunk.js",
+    "main.js.map": "/simple-web3-app/static/js/main.1c9a466b.chunk.js.map",
+    "runtime-main.js": "/simple-web3-app/static/js/runtime-main.deed4151.js",
+    "runtime-main.js.map": "/simple-web3-app/static/js/runtime-main.deed4151.js.map",
+    "static/css/2.1727d3ff.chunk.css": "/simple-web3-app/static/css/2.1727d3ff.chunk.css",
+    "static/js/2.72c6ea92.chunk.js": "/simple-web3-app/static/js/2.72c6ea92.chunk.js",
+    "static/js/2.72c6ea92.chunk.js.map": "/simple-web3-app/static/js/2.72c6ea92.chunk.js.map",
+    "static/js/3.497eab35.chunk.js": "/simple-web3-app/static/js/3.497eab35.chunk.js",
+    "static/js/3.497eab35.chunk.js.map": "/simple-web3-app/static/js/3.497eab35.chunk.js.map",
+    "index.html": "/simple-web3-app/index.html",
+    "static/css/2.1727d3ff.chunk.css.map": "/simple-web3-app/static/css/2.1727d3ff.chunk.css.map",
+    "static/css/main.3ce973dc.chunk.css.map": "/simple-web3-app/static/css/main.3ce973dc.chunk.css.map",
+    "static/js/2.72c6ea92.chunk.js.LICENSE.txt": "/simple-web3-app/static/js/2.72c6ea92.chunk.js.LICENSE.txt",
+    "static/media/Ethereum-ETH-icon.23ca4a5f.png": "/simple-web3-app/static/media/Ethereum-ETH-icon.23ca4a5f.png",
+    "static/media/Ipfs-icon.2c899a97.png": "/simple-web3-app/static/media/Ipfs-icon.2c899a97.png",
+    "static/media/bitcoin-icon.e200daf9.png": "/simple-web3-app/static/media/bitcoin-icon.e200daf9.png",
+    "static/media/CreateNFT.css": "/simple-web3-app/static/media/bootstrap-icons.ea6f3dfe.woff",
+    "static/media/cat-icon.1ce56ca9.png": "/simple-web3-app/static/media/cat-icon.1ce56ca9.png",
+    "static/media/metamask.09e5f554.svg": "/simple-web3-app/static/media/metamask.09e5f554.svg",
+    "static/media/nft-icon.3971ff10.png": "/simple-web3-app/static/media/nft-icon.3971ff10.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.deed4151.js",
+    "static/css/2.1727d3ff.chunk.css",
+    "static/js/2.72c6ea92.chunk.js",
+    "static/css/main.3ce973dc.chunk.css",
+    "static/js/main.1c9a466b.chunk.js"
+  ]
+}
