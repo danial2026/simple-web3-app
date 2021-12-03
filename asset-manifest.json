@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/simple-web3-app/static/css/main.3ce973dc.chunk.css",
-    "main.js": "/simple-web3-app/static/js/main.1c9a466b.chunk.js",
-    "main.js.map": "/simple-web3-app/static/js/main.1c9a466b.chunk.js.map",
+    "main.js": "/simple-web3-app/static/js/main.66948c92.chunk.js",
+    "main.js.map": "/simple-web3-app/static/js/main.66948c92.chunk.js.map",
     "runtime-main.js": "/simple-web3-app/static/js/runtime-main.deed4151.js",
     "runtime-main.js.map": "/simple-web3-app/static/js/runtime-main.deed4151.js.map",
     "static/css/2.1727d3ff.chunk.css": "/simple-web3-app/static/css/2.1727d3ff.chunk.css",
@@ -27,6 +27,6 @@
     "static/css/2.1727d3ff.chunk.css",
     "static/js/2.72c6ea92.chunk.js",
     "static/css/main.3ce973dc.chunk.css",
-    "static/js/main.1c9a466b.chunk.js"
+    "static/js/main.66948c92.chunk.js"
   ]
 }
