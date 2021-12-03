@@ -6,25 +6,25 @@ import * as IoIcons from 'react-icons/io';
 export const SidebarData = [
   {
     title: 'Home',
-    path: '/',
+    path: '/simple-web3-app/',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
   {
     title: 'Transactions',
-    path: '/transactions',
+    path: '/simple-web3-app/transactions',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
     title: 'Create NFT',
-    path: '/create-nft',
+    path: '/simple-web3-app/create-nft',
     icon: <IoIcons.IoIosCreate />,
     cName: 'nav-text'
   },
   {
     title: 'Market Place',
-    path: '/market-place',
+    path: '/simple-web3-app/market-place',
     icon: <FaIcons.FaCartArrowDown />,
     cName: 'nav-text'
   }
