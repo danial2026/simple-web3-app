@@ -27,7 +27,7 @@ class MarketPlace extends Component{
     let jsonResponse
     await require('axios')
       .get(
-        "https://cors-anywhere.herokuapp.com/" + url
+       url
       )
       .then(response => jsonResponse = response.data)
 
