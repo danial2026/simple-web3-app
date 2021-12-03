@@ -8,4 +8,5 @@ this is a simple react app which interacts with testnet rinkeby
 https://www.youtube.com/watch?v=DWNFJwK8QaQ
 
 ## demo available on :
+https://danial2026.github.io/simple-web3-app/
 http://blochchaindemo.danialmohamadzadeh.ir
