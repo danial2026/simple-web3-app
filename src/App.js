@@ -19,12 +19,12 @@ function App() {
     <Router className="App">
       <Navbar/>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/create-nft' element={<CreateNFT />} />
-        <Route path='/transactions' element={<Transactions />} />
-        <Route path='/market-place' element={<MarketPlace />} />
-        <Route path='/reports' element={<Reports />} />
-        <Route path='/transfer' element={<Transfer />} />
+        <Route path='/simple-web3-app/' element={<Home />} />
+        <Route path='/simple-web3-app/create-nft' element={<CreateNFT />} />
+        <Route path='/simple-web3-app/transactions' element={<Transactions />} />
+        <Route path='/simple-web3-app/market-place' element={<MarketPlace />} />
+        <Route path='/simple-web3-app/reports' element={<Reports />} />
+        <Route path='/simple-web3-app/transfer' element={<Transfer />} />
       </Routes>
     </Router>
     </>
