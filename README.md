@@ -1,5 +1,8 @@
 <img src="https://raw.githubusercontent.com/danial2026/simple-web3-app/main/src/assets/cat-icon.png" width="80" height="80">
 
+# pls watch this first :
+https://www.youtube.com/watch?v=DWNFJwK8QaQ
+
 # simple web3 app :
 this is a simple react app which interacts with testnet rinkeby
   
